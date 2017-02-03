@@ -43,8 +43,9 @@ public class MainActivityFragment extends Fragment {
     private ScaleBarOverlay mScaleBarOverlay;
     private CompassOverlay mCompassOverlay;
     private IMapController mapController;
-    private RadiusMarkerClusterer parkingMarkers;
+    private RadiusMarkerClusterer markers;
     private View view;
+
 
     private ArrayList<DatosEstacion> datosEstaciones;
 
@@ -98,11 +99,16 @@ public class MainActivityFragment extends Fragment {
                 marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
 
                 marker.setIcon(getResources().getDrawable(R.drawable.index_opt));
-                marker.setTitle(estacion.getStreetName());
+
+                String titulo= "-> "+estacion.getStreetName()+", "+estacion.getStreetNumber()+" ["+estacion.getStatus()+"],\n Disponibles Bicis a Recoger = "+ estacion.getBikes()+",\n Disponibles Bicis a colocar = "+estacion.getSlots();
+
+                marker.setTitle(titulo);
+
+
                 marker.setAlpha(0.6f);
 
-                parkingMarkers.add(marker);
-                parkingMarkers.invalidate();
+                markers.add(marker);
+                markers.invalidate();
                 map.invalidate();
 
             }
@@ -113,14 +119,14 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void setupMarkerOverlay() {
-        parkingMarkers = new RadiusMarkerClusterer(getContext());
-        map.getOverlays().add(parkingMarkers);
+        markers = new RadiusMarkerClusterer(getContext());
+        map.getOverlays().add(markers);
 
         Drawable clusterIconD = getResources().getDrawable(R.drawable.index_opt);
         Bitmap clusterIcon = ((BitmapDrawable)clusterIconD).getBitmap();
 
-        parkingMarkers.setIcon(clusterIcon);
-        parkingMarkers.setRadius(100);
+        markers.setIcon(clusterIcon);
+        markers.setRadius(100);
     }
 
 
