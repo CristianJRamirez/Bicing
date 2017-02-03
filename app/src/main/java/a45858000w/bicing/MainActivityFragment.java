@@ -1,12 +1,18 @@
 package a45858000w.bicing;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,6 +29,9 @@ import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 
 import java.util.ArrayList;
 
+import org.osmdroid.bonuspack.overlays.Marker;
+import org.osmdroid.util.GeoPoint;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -37,9 +46,17 @@ public class MainActivityFragment extends Fragment {
     private RadiusMarkerClusterer parkingMarkers;
     private View view;
 
+    private ArrayList<DatosEstacion> datosEstaciones;
+
     private ProgressDialog dialog;
 
     public MainActivityFragment() {
+    }
+
+    @Override//notificamos al activity quer le añadimos items al menu
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -56,10 +73,58 @@ public class MainActivityFragment extends Fragment {
         setZoom();
         setOverlays();
 
+
+
+        putMarkers();
         map.invalidate();
 
         return view;
     }
+
+    private void putMarkers() {
+        setupMarkerOverlay();
+
+        if (datosEstaciones!=null) {
+            for (DatosEstacion estacion : datosEstaciones) {
+                Marker marker = new Marker(map);
+
+                GeoPoint point = new GeoPoint(
+                        estacion.getLatitude(),
+                        estacion.getLongitude()
+                );
+
+                marker.setPosition(point);
+
+                marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+
+                marker.setIcon(getResources().getDrawable(R.drawable.index_opt));
+                marker.setTitle(estacion.getStreetName());
+                marker.setAlpha(0.6f);
+
+                parkingMarkers.add(marker);
+                parkingMarkers.invalidate();
+                map.invalidate();
+
+            }
+        }
+
+
+
+    }
+
+    private void setupMarkerOverlay() {
+        parkingMarkers = new RadiusMarkerClusterer(getContext());
+        map.getOverlays().add(parkingMarkers);
+
+        Drawable clusterIconD = getResources().getDrawable(R.drawable.index_opt);
+        Bitmap clusterIcon = ((BitmapDrawable)clusterIconD).getBitmap();
+
+        parkingMarkers.setIcon(clusterIcon);
+        parkingMarkers.setRadius(100);
+    }
+
+
+
 
 
     private void initializeMap() {
@@ -114,6 +179,7 @@ public class MainActivityFragment extends Fragment {
     }
 
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -128,7 +194,6 @@ public class MainActivityFragment extends Fragment {
         rdt.execute();
     }
 
-
     private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -140,21 +205,32 @@ public class MainActivityFragment extends Fragment {
             result = Api.getDatosEstaciones();
 
             //Log.d("DEBUG", result.toString());
-
+            datosEstaciones=result;
             return null;
         }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-           // dialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            //dialog.dismiss();
-        }
     }
+
+
+    @Override//añadimos items al menu
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_main,menu);
+    }
+
+
+    //region Click en el boton Actualizar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.mostrarEstaciones) {
+            putMarkers();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }

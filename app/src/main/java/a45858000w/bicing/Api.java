@@ -49,7 +49,7 @@ public class Api {
                 //Log.d("ESTACION ---->>>", object.toString());
                 Gson gson = new Gson();
                 DatosEstacion estacion= gson.fromJson(object.toString(),DatosEstacion.class);
-                Log.d("ESTACION ---->>>", estacion.toString());
+                //Log.d("ESTACION ---->>>", estacion.toString());
 
                 estaciones.add(estacion);
             }
