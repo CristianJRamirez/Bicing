@@ -8,14 +8,14 @@ public class DatosEstacion {
 
     private int id;
     private String streetName;
-    private int streetNumber;
+    private String streetNumber;
     private int bikes;
     private int slots;
     private String type;
     private String status;
-    private long latitude;
+    private double latitude;
     private String altitude;
-    private long longitude;
+    private double longitude;
     private String nearbyStations;
 
 
@@ -35,11 +35,11 @@ public class DatosEstacion {
         this.streetName = streetName;
     }
 
-    public int getStreetNumber() {
+    public String getStreetNumber() {
         return streetNumber;
     }
 
-    public void setStreetNumber(int streetNumber) {
+    public void setStreetNumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
 
@@ -75,11 +75,11 @@ public class DatosEstacion {
         this.status = status;
     }
 
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -91,11 +91,11 @@ public class DatosEstacion {
         this.altitude = altitude;
     }
 
-    public long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

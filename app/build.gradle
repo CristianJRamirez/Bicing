@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "a45858000w.bicing"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 16
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -28,6 +28,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
 
     compile 'org.osmdroid:osmdroid-android:5.1@aar'
+    compile 'com.github.MKergall.osmbonuspack:OSMBonusPack:v5.7'
 
     testCompile 'junit:junit:4.12'
 }

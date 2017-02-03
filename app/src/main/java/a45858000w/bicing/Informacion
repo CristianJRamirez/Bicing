@@ -3,3 +3,27 @@ Api oficial
 http://wservice.viabicing.cat/v2/stations
 
  toda la informacion de las estacions, hay que ir refrescando los datos de la bbdd
+
+
+{"id":"36",
+    "type":"BIKE",
+    "latitude":"41.385151",
+    "longitude":"2.176804",
+    "streetName":"Catedral",
+    "streetNumber":"6",
+    "altitude":"16",
+    "slots":"8",
+    "bikes":"11",
+    "nearbyStations":"34, 35, 53, 358, 380",
+    "status":"OPN"},
+{"id":"37",
+    "type":"BIKE",
+    "latitude":"41.381226",
+    "longitude":"2.181888",
+    "streetName":"Pl. Antonio L\u00f3pez",
+    "streetNumber":"",
+    "altitude":"5",
+    "slots":"23",
+    "bikes":"0",
+    "nearbyStations":"38, 115, 126, 401",
+    "status":"OPN"},
