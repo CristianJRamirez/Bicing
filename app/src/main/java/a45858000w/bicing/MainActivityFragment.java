@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -98,9 +99,46 @@ public class MainActivityFragment extends Fragment {
 
                 marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
 
-                marker.setIcon(getResources().getDrawable(R.drawable.index_opt));
+                int disponibilidad = (estacion.getBikes()/ (estacion.getBikes()+estacion.getSlots()))*100;
 
-                String titulo= "-> "+estacion.getStreetName()+", "+estacion.getStreetNumber()+" ["+estacion.getStatus()+"],\n Disponibles Bicis a Recoger = "+ estacion.getBikes()+",\n Disponibles Bicis a colocar = "+estacion.getSlots();
+                Log.d("DISPONIBILIDAD",String.valueOf(estacion.getBikes()));
+                Log.d("DISPONIBILIDAD1",String.valueOf((estacion.getBikes()+estacion.getSlots())));
+
+                Log.d("DISPONIBILIDAD2",String.valueOf(estacion.getSlots()));
+
+                Log.d("DISPONIBILIDAD3",String.valueOf((estacion.getBikes())));
+
+                Log.d("DISPONIBILIDAD4",String.valueOf((estacion.getBikes()/ (estacion.getBikes()+estacion.getSlots()))));
+
+
+
+                if (disponibilidad==0)
+                {
+                    marker.setIcon(getResources().getDrawable(R.drawable.bici0_opt));
+                }
+                else if (disponibilidad >0 && disponibilidad<25)
+                {
+                    marker.setIcon(getResources().getDrawable(R.drawable.bici25_opt));
+                }
+                else if (disponibilidad >25 && disponibilidad<50)
+                {
+                    marker.setIcon(getResources().getDrawable(R.drawable.bici50_opt));
+                }
+                else if (disponibilidad >50 && disponibilidad<75)
+                {
+                    marker.setIcon(getResources().getDrawable(R.drawable.bici75_opt));
+                }
+                else if (disponibilidad >75 )
+                {
+                    marker.setIcon(getResources().getDrawable(R.drawable.bici100_opt));
+                }
+                //marker.setIcon(getResources().getDrawable(R.drawable.index_opt));
+
+
+                String titulo= "-> "+estacion.getStreetName()+", "+estacion.getStreetNumber()+" ["+estacion.getStatus()+"]," +
+                        "   \n Disponibles Bicis a Recoger = "+ estacion.getBikes()+"," +
+                        "\n Disponibles Bicis a colocar = "+estacion.getSlots()+"," +
+                        "\n Tipo de Bici = "+estacion.getType();
 
                 marker.setTitle(titulo);
 
