@@ -17,6 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.views.MapView;
@@ -99,9 +102,9 @@ public class MainActivityFragment extends Fragment {
 
                 marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
 
-                int disponibilidad = (estacion.getBikes()/ (estacion.getBikes()+estacion.getSlots()))*100;
+                int disponibilidad = (estacion.getBikes()*100/ (estacion.getBikes()+estacion.getSlots()));
 
-                Log.d("DISPONIBILIDAD",String.valueOf(estacion.getBikes()));
+              /*  Log.d("DISPONIBILIDAD",String.valueOf(estacion.getBikes()));
                 Log.d("DISPONIBILIDAD1",String.valueOf((estacion.getBikes()+estacion.getSlots())));
 
                 Log.d("DISPONIBILIDAD2",String.valueOf(estacion.getSlots()));
@@ -109,7 +112,7 @@ public class MainActivityFragment extends Fragment {
                 Log.d("DISPONIBILIDAD3",String.valueOf((estacion.getBikes())));
 
                 Log.d("DISPONIBILIDAD4",String.valueOf((estacion.getBikes()/ (estacion.getBikes()+estacion.getSlots()))));
-
+*/
 
 
                 if (disponibilidad==0)

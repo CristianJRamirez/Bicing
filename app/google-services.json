@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1020673820229",
+    "firebase_url": "https://bicing-49457.firebaseio.com",
+    "project_id": "bicing-49457",
+    "storage_bucket": "bicing-49457.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020673820229:android:e31da756d9f91ea3",
+        "android_client_info": {
+          "package_name": "a45858000w.bicing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020673820229-56iluv8uqhj587dokk6937qfop8c88gq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8YLL_nPWnbekWfm5adpkEGVJEPNREigI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020673820229-56iluv8uqhj587dokk6937qfop8c88gq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
