@@ -47,7 +47,7 @@ private FirebaseAuth auth;
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference todosRef = database.getReference("todos");
+        final DatabaseReference todosRef = database.getReference("bicing");
 
 
         list = (ListView) view.findViewById(R.id.listView);
